@@ -9,16 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Archive Release
-      uses: thedoctor0/zip-release@0.7.1
+#     - name: Archive Release
+#       uses: thedoctor0/zip-release@0.7.1
+#       with:
+#         type: 'zip'
+#         filename: 'release.zip'
+#         path: .
+#         exclusions: '*.git*'
+        
+    - uses: vimtor/action-zip@v1
       with:
-        type: 'zip'
-        filename: 'release.zip'
-        path: .
-        exclusions: '*.git*'
+          files: ${{github.workspace}}
+          dest: result-${{ github.sha }}.zip
         
         
-    - name: Commit & Push changes
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.FULL_ACCESS }}
+#     - name: Commit & Push changes
+#       uses: actions-js/push@master
+#       with:
+#         github_token: ${{ secrets.FULL_ACCESS }}
