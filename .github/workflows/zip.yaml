@@ -18,6 +18,9 @@ jobs:
        zip result.zip ${{ github.workspace }}/*
        cat ${{ github.workspace }}/test1
        ls -lrt
+       git add .
+       git commit -m "auto commit "
+       git push origin 
 #     - name: Archive Release
 #       uses: thedoctor0/zip-release@0.7.1
 #       with:
