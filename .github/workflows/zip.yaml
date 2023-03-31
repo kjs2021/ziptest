@@ -19,13 +19,20 @@ jobs:
 #         filename: 'release.zip'
 #         path: .
 #         exclusions: '*.git*'
-        
-    - uses: vimtor/action-zip@v1
+
+    - name: Commit & Push changes
+      uses: actions-js/push@master
       with:
-          files: ${{github.workspace}}
-          dest: result-${{ github.sha }}.zip
-    - name: push
-      uses: actions-x/commit@v6
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+           branch: main
+           message: 'Auto commit from github action'
+        
+#     - uses: vimtor/action-zip@v1
+#       with:
+#           files: ${{github.workspace}}
+#           dest: result-${{ github.sha }}.zip
+#     - name: push
+#       uses: actions-x/commit@v6
         
         
 #     - name: Commit & Push changes
