@@ -16,3 +16,9 @@ jobs:
         filename: 'release.zip'
         path: .
         exclusions: '*.git*'
+        
+        
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
