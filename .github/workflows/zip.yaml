@@ -6,20 +6,60 @@ on:
 permissions:
   contents: read
   id-token: write
-
+  
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: |
-       cat ${{ github.workspace }}/test1
-       sed -i 's|action|flow|' ${{ github.workspace }}/test1
-       zip result.zip ${{ github.workspace }}/*
-       cat ${{ github.workspace }}/test1
-       ls -lrt
+      with:
+        persist-credentials: false 
+        fetch-depth: 0 
+    - name: Create local changes
+      run: |
+        sed -i 's|action|flow|' ${{ github.workspace }}/test1
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
+        message: 'Auto commit from github action'
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#      - uses: actions/checkout@master
+#        with:
+#         persist-credentials: false 
+#         fetch-depth: 0 
+#      - run: |
+#         cat ${{ github.workspace }}/test1
+#         sed -i 's|action|flow|' ${{ github.workspace }}/test1
+#         zip result.zip ${{ github.workspace }}/*
+#         cat ${{ github.workspace }}/test1
+#         ls -lrt
       
-#     - name: Archive Release
+#       - name: Commit & Push changes
+#         uses: actions-js/push@master
+#         with:
+#            github_token: ${{ secrets.GITHUB_TOKEN }}
+#            branch: main
+#            message: 'Auto commit from github action'
+      
+# #     - name: Archive Release
 #       uses: thedoctor0/zip-release@0.7.1
 #       with:
 #         type: 'zip'
@@ -27,12 +67,6 @@ jobs:
 #         path: .
 #         exclusions: '*.git*'
 
-    - name: Commit & Push changes
-      uses: actions-js/push@master
-      with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
-           branch: main
-           message: 'Auto commit from github action'
         
 #     - uses: vimtor/action-zip@v1
 #       with:
