@@ -21,6 +21,8 @@ jobs:
       with:
           files: ${{github.workspace}}
           dest: result-${{ github.sha }}.zip
+    - name: push
+      uses: actions-x/commit@v6
         
         
 #     - name: Commit & Push changes
