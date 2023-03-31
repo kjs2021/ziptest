@@ -24,7 +24,7 @@ jobs:
         sed -i 's|action|flow|' ${{ env.Filename }}
         zip result.zip ${{ github.workspace }}/*
         cat ${{ github.workspace }}/test1
-    - name: Commit & Push changes
+    - name: Commit & Push changes to same repo
       run: |
        cat ${{ github.workspace }}/test1
     - uses: actions-js/push@master
@@ -34,7 +34,7 @@ jobs:
         message: 'Auto commit from github action'
         
         
-    - name: Commit & Push changes
+    - name: Commit & Push changes to maven repo
       run: |
         cat ${{ github.workspace }}/test1
     - uses: actions-js/push@master
@@ -42,7 +42,7 @@ jobs:
         github_token: ${{ secrets.MAVEN_TOKEN }}
         branch: main
         message: 'Auto commit from github ziptest repo action'
-        directory: .
+        directory: '.'
         repository: kjs2021/maven
   
   
