@@ -4,7 +4,7 @@ on:
     branches: [ "main" ]
  workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   id-token: write
 env:
  Filename: ${{ github.workspace }}/test1
@@ -24,7 +24,9 @@ jobs:
         sed -i 's|action|flow|' ${{ env.Filename }}
         cat ${{ github.workspace }}/test1
     - name: Commit & Push changes
-      uses: actions-js/push@master
+      run: |
+       cat ${{ github.workspace }}/test1
+    - uses: actions-js/push@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
