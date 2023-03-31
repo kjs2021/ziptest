@@ -18,6 +18,8 @@ jobs:
        zip result.zip ${{ github.workspace }}/*
        cat ${{ github.workspace }}/test1
        ls -lrt
+       git config  user.email kksaini6@yahoo.com
+       git config  user.name   ${{ github.repository_owner }}
        git add .
        git commit -m "auto commit "
        git push origin 
