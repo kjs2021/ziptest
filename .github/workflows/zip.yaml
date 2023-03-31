@@ -42,7 +42,7 @@ jobs:
         github_token: ${{ secrets.MAVEN_TOKEN }}
         branch: main
         message: 'Auto commit from github ziptest repo action'
-        directory: devs
+        directory: .
         repository: kjs2021/maven
   
   
