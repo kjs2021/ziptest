@@ -3,9 +3,9 @@ on:
  push:
     branches: [ "main" ]
  workflow_dispatch:
-# permissions:
-#   contents: write
-#   id-token: write
+permissions:
+  contents: write
+  id-token: write
 env:
  Filename: ${{ github.workspace }}/test1
   
@@ -22,8 +22,8 @@ jobs:
       run: |
         cat ${{ github.workspace }}/test1
         sed -i 's|action|flow|' ${{ env.Filename }}
- #       zip result.zip ${{ github.workspace }}/*
-  #    cat ${{ github.workspace }}/test1
+        zip result.zip ${{ github.workspace }}/*
+        cat ${{ github.workspace }}/test1
     - name: Commit & Push changes
       run: |
        cat ${{ github.workspace }}/test1
@@ -32,6 +32,18 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
         message: 'Auto commit from github action'
+        
+        
+    - name: Commit & Push changes
+      run: |
+        cat ${{ github.workspace }}/test1
+    - uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.MAVEN_TOKEN }}
+        branch: main
+        message: 'Auto commit from github ziptest repo action'
+        directory: devs
+        repository: kjs2021/maven
   
   
   
