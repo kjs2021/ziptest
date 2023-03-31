@@ -6,7 +6,8 @@ on:
 permissions:
   contents: read
   id-token: write
-  
+env:
+ Filename: ${{ github.workspace }}/test1
   
 jobs:
   build:
@@ -19,7 +20,8 @@ jobs:
         ref: main
     - name: Create local changes
       run: |
-        sed -i 's|action|flow|' ${{ github.workspace }}/test1
+        cat ${{ github.workspace }}/test1
+        sed -i 's|action|flow|' ${{ env.Filename }}
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
