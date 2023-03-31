@@ -22,6 +22,7 @@ jobs:
       run: |
         cat ${{ github.workspace }}/test1
         sed -i 's|action|flow|' ${{ env.Filename }}
+        zip result.zip ${{ github.workspace }}/*
         cat ${{ github.workspace }}/test1
     - name: Commit & Push changes
       run: |
