@@ -17,6 +17,7 @@ jobs:
        sed -i 's|action|flow|' ${{ github.workspace }}/test1
        zip result.zip ${{ github.workspace }}/*
        cat ${{ github.workspace }}/test1
+       ls -lrt
 #     - name: Archive Release
 #       uses: thedoctor0/zip-release@0.7.1
 #       with:
