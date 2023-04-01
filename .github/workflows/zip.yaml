@@ -44,6 +44,7 @@ jobs:
         source_file: 'Result/result1.zip'
         destination_repo: 'kjs2021/maven'
         destination_folder: 'dev'
+        target-branch: push
 #         user_email: 'example@email.com'
 #         user_name: 'dmnemec'
         commit_message: 'A custom message for the commit'   
