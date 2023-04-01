@@ -35,19 +35,32 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
         message: 'Auto commit from github action test1'
-    
-    - name: Pushes test file
-      uses: dmnemec/copy_file_to_another_repo_action@main
+        
+        
+    - name: Pushes to Repository
+      uses: tech-thinker/push-to-repo@main
       env:
-        API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
+       API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
       with:
-        source_file: 'Result/result1.zip'
-        destination_repo: 'kjs2021/maven'
-        destination_folder: 'dev'
-        destination_branch: test-branch
-        user_email: 'kksaini6@yahoo.com'
-        user_name: 'kjs2021'
-        commit_message: 'A custom message for the commit'   
+       user-name: "github-actions[bot]"
+       user-email: github-actions[bot]@users.noreply.github.com
+       source-directory: "Result/result1.zip"
+       destination-github-username: "kjs2021"
+       destination-repository-name: "maven"
+       target-branch: test-branch
+    
+#     - name: Pushes test file
+#       uses: dmnemec/copy_file_to_another_repo_action@main
+#       env:
+#         API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
+#       with:
+#         source_file: 'Result/result1.zip'
+#         destination_repo: 'kjs2021/maven'
+#         destination_folder: 'dev'
+#         destination_branch: test-branch
+#         user_email: 'kksaini6@yahoo.com'
+#         user_name: 'kjs2021'
+#         commit_message: 'A custom message for the commit'   
         
         
         
