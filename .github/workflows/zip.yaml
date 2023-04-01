@@ -44,7 +44,7 @@ jobs:
       with:
        user-name: "github-actions[bot]"
        user-email: github-actions[bot]@users.noreply.github.com
-       source-directory: "Result/result1.zip"
+       source-directory: "Result"
        destination-github-username: "kjs2021"
        destination-repository-name: "maven"
        target-branch: test-branch
