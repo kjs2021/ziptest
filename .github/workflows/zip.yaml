@@ -20,7 +20,7 @@ jobs:
         ref: main
     - name: Create local changes
       run: |
-        rm -f Result
+        rm -r Result
         cat ${{ github.workspace }}/test1
         sed -i 's|flow|new-flow|' ${{ env.Filename }}
         mkdir Result
