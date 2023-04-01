@@ -21,7 +21,7 @@ jobs:
     - name: Create local changes
       run: |
         cat ${{ github.workspace }}/test1
-        sed -i 's|action|flow|' ${{ env.Filename }}
+        sed -i 's|action|new-flow|' ${{ env.Filename }}
         zip result1.zip ${{ github.workspace }}/*
         cat ${{ github.workspace }}/test1
         ls -lrt
@@ -33,19 +33,30 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
         message: 'Auto commit from github action'
-        
-        
-    - name: Commit & Push changes to maven repo
-      run: |
-        cat ${{ github.workspace }}/test1
-        ls -lrt
-    - uses: actions-js/push@master
+    - name: Pushes to another repository
+      uses: cpina/github-action-push-to-another-repository@main
+      env:
+#           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
       with:
-        github_token: ${{ secrets.MAVEN_TOKEN }}
-        branch: main
-        message: 'Auto commit from github ziptest repo action'
-        directory: ./devs
-        repository: kjs2021/maven
+          source-directory: './result1.zip'
+          destination-github-username: 'kjs2021'
+          destination-repository-name: 'maven'
+#           user-email: carles3@pina.cat
+          target-branch: main
+        
+        
+#     - name: Commit & Push changes to maven repo
+#       run: |
+#         cat ${{ github.workspace }}/test1
+#         ls -lrt
+#     - uses: actions-js/push@master
+#       with:
+#         github_token: ${{ secrets.MAVEN_TOKEN }}
+#         branch: main
+#         message: 'Auto commit from github ziptest repo action'
+#         directory: ./devs
+#         repository: kjs2021/maven
   
   
   
