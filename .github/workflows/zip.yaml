@@ -20,10 +20,11 @@ jobs:
         ref: main
     - name: Create local changes
       run: |
+        rm -f Result
         cat ${{ github.workspace }}/test1
-        sed -i 's|action|new-flow|' ${{ env.Filename }}
+        sed -i 's|flow|new-flow|' ${{ env.Filename }}
         mkdir Result
-        zip Result/result1.zip ${{ github.workspace }}/*
+        zip Result/result1.zip ${{ github.workspace }}/* -x "*.git*"
         cat ${{ github.workspace }}/test1
         ls -lrt
     - name: Commit & Push changes to same repo
@@ -44,7 +45,8 @@ jobs:
           destination-github-username: 'kjs2021'
           destination-repository-name: 'maven'
 #           user-email: carles3@pina.cat
-          target-branch: main
+          target-branch: push
+          commit-message: " auto commit from ${{ env.Filename }}"
         
         
 #     - name: Commit & Push changes to maven repo
