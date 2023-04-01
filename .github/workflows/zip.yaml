@@ -22,7 +22,8 @@ jobs:
       run: |
         cat ${{ github.workspace }}/test1
         sed -i 's|action|new-flow|' ${{ env.Filename }}
-        zip result1.zip ${{ github.workspace }}/*
+        mkdir Result
+        zip Result/result1.zip ${{ github.workspace }}/*
         cat ${{ github.workspace }}/test1
         ls -lrt
     - name: Commit & Push changes to same repo
@@ -39,7 +40,7 @@ jobs:
 #           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
           API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
       with:
-          source-directory: './result1.zip'
+          source-directory: 'Result'
           destination-github-username: 'kjs2021'
           destination-repository-name: 'maven'
 #           user-email: carles3@pina.cat
