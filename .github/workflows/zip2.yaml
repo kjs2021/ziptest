@@ -18,7 +18,7 @@ jobs:
         ref: main
     - name: Create local changes
       run: |
-        rm -r Function
+       # rm -r Function
         mkdir ${{ github.workspace }}/Function
         zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*"
         ls -lrt
