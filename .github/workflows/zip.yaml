@@ -20,7 +20,7 @@ jobs:
         ref: main
     - name: Create local changes
       run: |
-        rm -r Function
+        # rm -r Function
         #       sed -i 's|flow|new-flow|' ${{ env.Filename }}
         mkdir Function
         zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*"
