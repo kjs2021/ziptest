@@ -35,30 +35,30 @@ jobs:
         message: 'Auto commit from github action ${{ env.Filename }}'
         
         
-    - name: Pushes to Repository
-      uses: tech-thinker/push-to-repo@main
-      env:
-       API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
-      with:
-       user-name: "github-actions[bot]"
-       user-email: github-actions[bot]@users.noreply.github.com
-       source-directory: "Function"
-       destination-github-username: "kjs2021"
-       destination-repository-name: "maven/Function"
-       target-branch: test-branch
-    
-#     - name: Pushes test file
-#       uses: dmnemec/copy_file_to_another_repo_action@main
+#     - name: Pushes to Repository
+#       uses: tech-thinker/push-to-repo@main
 #       env:
-#         API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
+#        API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
 #       with:
-#         source_file: 'Result/result1.zip'
-#         destination_repo: 'kjs2021/maven'
-#         destination_folder: 'dev'
-#         destination_branch: test-branch
-#         user_email: 'kksaini6@yahoo.com'
-#         user_name: 'kjs2021'
-#         commit_message: 'A custom message for the commit'   
+#        user-name: "github-actions[bot]"
+#        user-email: github-actions[bot]@users.noreply.github.com
+#        source-directory: "Function"
+#        destination-github-username: "kjs2021"
+#        destination-repository-name: "maven/Function"
+#        target-branch: test-branch
+    
+    - name: Pushes test file
+      uses: dmnemec/copy_file_to_another_repo_action@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
+      with:
+        source_file: 'Function/${{ env.Filename }}.zip'
+        destination_repo: 'kjs2021/maven'
+        destination_folder: 'Function'
+        destination_branch: test-branch
+        user_email: 'kksaini6@yahoo.com'
+        user_name: 'kjs2021'
+        commit_message: 'A custom message for the commit ${{ env.Filename }}'   
         
         
         
