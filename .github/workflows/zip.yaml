@@ -22,17 +22,17 @@ jobs:
       run: |
         rm -r Function
         #       sed -i 's|flow|new-flow|' ${{ env.Filename }}
-        mkdir Function
+        mkdir ${{ github.workspace }}/Function
         zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*"
         ls -lrt
-    - name: Commit & Push changes to same repo
-      run: |
-       cat ${{ github.workspace }}/test1
-    - uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
-        message: 'Auto commit from github action ${{ env.Filename }}'
+#     - name: Commit & Push changes to same repo
+#       run: |
+#        cat ${{ github.workspace }}/test1
+#     - uses: actions-js/push@master
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         branch: main
+#         message: 'Auto commit from github action ${{ env.Filename }}'
         
         
 #     - name: Pushes to Repository
@@ -52,7 +52,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
       with:
-        source_file: 'Function/${{ env.Filename }}.zip'
+        source_file: '${{ github.workspace }}/Function/${{ env.Filename }}.zip'
         destination_repo: 'kjs2021/maven'
         destination_folder: 'Function'
         destination_branch: test-branch
