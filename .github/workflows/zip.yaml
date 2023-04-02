@@ -7,7 +7,7 @@ permissions:
   contents: write
   id-token: write
 env:
- Filename: ${{ github.workspace }}/test1
+ Filename: Smart.save
   
 jobs:
   build:
@@ -20,12 +20,10 @@ jobs:
         ref: main
     - name: Create local changes
       run: |
-        rm -r Result
-        cat ${{ github.workspace }}/test1
-        sed -i 's|flow|new-flow|' ${{ env.Filename }}
-        mkdir Result
-        zip Result/result1.zip ${{ github.workspace }}/* -x "*.git*"
-        cat ${{ github.workspace }}/test1
+        rm -r Function
+        #       sed -i 's|flow|new-flow|' ${{ env.Filename }}
+        mkdir Function
+        zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*"
         ls -lrt
     - name: Commit & Push changes to same repo
       run: |
@@ -34,7 +32,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
-        message: 'Auto commit from github action test1'
+        message: 'Auto commit from github action ${{ env.Filename }}'
         
         
     - name: Pushes to Repository
@@ -44,7 +42,7 @@ jobs:
       with:
        user-name: "github-actions[bot]"
        user-email: github-actions[bot]@users.noreply.github.com
-       source-directory: "Result"
+       source-directory: "Function"
        destination-github-username: "kjs2021"
        destination-repository-name: "maven"
        target-branch: test-branch
