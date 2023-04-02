@@ -44,7 +44,7 @@ jobs:
        user-email: github-actions[bot]@users.noreply.github.com
        source-directory: "Function"
        destination-github-username: "kjs2021"
-       destination-repository-name: "maven"
+       destination-repository-name: "maven/Function"
        target-branch: test-branch
     
 #     - name: Pushes test file
