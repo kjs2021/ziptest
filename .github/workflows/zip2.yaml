@@ -20,7 +20,7 @@ jobs:
       run: |
        # rm -r Function
         mkdir ${{ github.workspace }}/Function
-        zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*" -x "Function" -x "README.md"
+        zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*" -x "${{ github.workspace }}/Function/*" -x "${{ github.workspace }}/README.md"
         ls -lrt
     - name: Pushes test file
       uses: dmnemec/copy_file_to_another_repo_action@main
