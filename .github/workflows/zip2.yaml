@@ -19,7 +19,7 @@ jobs:
     - name: Create local changes
       run: |
        # rm -r Function
-        mkdir ${{ github.workspace }}/Function
+       # mkdir ${{ github.workspace }}/Function
         zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*"
         ls -lrt
     - name: Pushes test file
