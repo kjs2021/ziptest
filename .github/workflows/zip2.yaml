@@ -33,4 +33,4 @@ jobs:
         destination_branch: test-branch
         user_email: 'kksaini6@yahoo.com'
         user_name: 'kjs2021'
-        commit_message: '${{ env.Filename }}.zip'   
+        commit_message: '${{ env.Filename }}'   
