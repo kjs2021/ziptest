@@ -5,7 +5,7 @@ on:
  workflow_dispatch:
 
 env:
- Filename: ${{ var.FUNCTIONNAME }}
+ Filename: ${{ vars.FUNCTIONNAME }}
   
 jobs:
   build:
