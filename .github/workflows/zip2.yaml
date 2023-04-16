@@ -5,7 +5,7 @@ on:
  workflow_dispatch:
 
 env:
- Filename: Smart.approval10
+ Filename: ${{ var.FUNCTIONNAME }}
   
 jobs:
   build:
@@ -31,6 +31,6 @@ jobs:
         destination_repo: 'kjs2021/maven'
         destination_folder: 'Function'
         destination_branch: test-branch
-        user_email: 'kksaini6@yahoo.com'
-        user_name: 'kjs2021'
+        user_email: '${{ github.event.pusher.email }}'
+        user_name: '${{ github.actor }}'
         commit_message: '${{ env.Filename }}'   
