@@ -21,6 +21,7 @@ jobs:
           new_branch_name: ${{ env.Branchname}}
           new_branch_ref: main
           access_token: ${{ secrets.MAVEN_TOKEN }}
+          ignore_branch_exists: true
  zip-push-repo:
     runs-on: ubuntu-latest
     needs: new-branch
