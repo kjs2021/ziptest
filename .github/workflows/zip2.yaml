@@ -7,7 +7,7 @@ on:
 env:
  commitmsg: "message-config"
  ZipFilename: ${{ vars.FUNCTIONNAME }}
- Branchname: "smart.${{ env.commitmsg }}"
+ Branchname: "smart.${{ vars.COMMITMSG }}"
 
 jobs:
  new-branch: 
@@ -49,7 +49,7 @@ jobs:
         destination_branch: ${{ env.Branchname }}
         user_email: '${{ github.event.pusher.email }}'
         user_name: '${{ github.actor }}'
-        commit_message: '${{ env.commitmsg }}'   
+        commit_message: '${{ vars.COMMITMSG }}'   
         
 #     - name: create other branch 
 #       id: new-branch
@@ -57,7 +57,7 @@ jobs:
 #       with:
 #           repository_owner: kjs2021
 #           repository_name: maven
-#           new_branch_name: ${{ env.Filename }}
+#           new_branch_name: ${{ env.Branchname }}
 #           new_branch_ref: main
 #           access_token: ${{ secrets.MAVEN_TOKEN }}
 #   new-branch: 
@@ -76,5 +76,5 @@ jobs:
 #          destination_branch: ${{ env.commitmsg }}
 #          user_email: '${{ github.event.pusher.email }}'
 #          user_name: '${{ github.actor }}'
-#         commit_message: '${{ env.commitmsg }}'   
+#         commit_message: '${{ vars.COMMITMSG }}'   
         
