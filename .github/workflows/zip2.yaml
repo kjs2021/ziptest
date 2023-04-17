@@ -5,8 +5,9 @@ on:
  workflow_dispatch:
 
 env:
- Filename: ${{ vars.FUNCTIONNAME }}
+ ZipFilename: ${{ vars.FUNCTIONNAME }}
  Branchname: smart.message
+ commitmsg: message-config
   
 jobs:
  new-branch: 
@@ -18,7 +19,7 @@ jobs:
     with:
           repository_owner: kjs2021
           repository_name: maven
-          new_branch_name: ${{ env.Branchname}}
+          new_branch_name: ${{ env.commitmsg }}
           new_branch_ref: main
           access_token: ${{ secrets.MAVEN_TOKEN }}
           ignore_branch_exists: true
@@ -35,20 +36,20 @@ jobs:
       run: |
        # rm -r Function
         mkdir ${{ github.workspace }}/Function
-        zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*" -x "${{ github.workspace }}/Function/*" -x "${{ github.workspace }}/README.md"
+        zip Function/${{ env.ZipFilename }}.zip ${{ github.workspace }}/* -x "*.git*" -x "${{ github.workspace }}/Function/*" -x "${{ github.workspace }}/README.md"
         ls -lrt
     - name: Pushes test file
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
       with:
-        source_file: '${{ github.workspace }}/Function/${{ env.Filename }}.zip'
+        source_file: '${{ github.workspace }}/Function/${{ env.ZipFilename }}.zip'
         destination_repo: 'kjs2021/maven'
         destination_folder: 'Function'
-        destination_branch: ${{ env.Branchname }}
+        destination_branch: ${{ env.commitmsg}}
         user_email: '${{ github.event.pusher.email }}'
         user_name: '${{ github.actor }}'
-        commit_message: '${{ env.Filename }}'   
+        commit_message: '${{ env.commitmsg }}'   
         
 #     - name: create other branch 
 #       id: new-branch
@@ -72,8 +73,8 @@ jobs:
 #          source_file: '${{ github.workspace }}/Function/${{ env.Filename }}.zip'
 #          destination_repo: 'kjs2021/maven'
 #          destination_folder: 'Function'
-#          destination_branch: ${{ env.Filename }}
+#          destination_branch: ${{ env.commitmsg }}
 #          user_email: '${{ github.event.pusher.email }}'
 #          user_name: '${{ github.actor }}'
-#         commit_message: '${{ env.Filename }}'   
+#         commit_message: '${{ env.commitmsg }}'   
         
