@@ -5,10 +5,10 @@ on:
  workflow_dispatch:
 
 env:
- ZipFilename: ${{ vars.FUNCTIONNAME }}
- Branchname: smart.message
  commitmsg: message-config
-  
+ ZipFilename: ${{ vars.FUNCTIONNAME }}
+ Branchname: smart.${{ env.commitmsg }}
+
 jobs:
  new-branch: 
   runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
     with:
           repository_owner: kjs2021
           repository_name: maven
-          new_branch_name: ${{ env.commitmsg }}
+          new_branch_name: ${{ env.Branchname }}
           new_branch_ref: main
           access_token: ${{ secrets.MAVEN_TOKEN }}
           ignore_branch_exists: true
@@ -46,7 +46,7 @@ jobs:
         source_file: '${{ github.workspace }}/Function/${{ env.ZipFilename }}.zip'
         destination_repo: 'kjs2021/maven'
         destination_folder: 'Function'
-        destination_branch: ${{ env.commitmsg}}
+        destination_branch: ${{ env.Branchname }}
         user_email: '${{ github.event.pusher.email }}'
         user_name: '${{ github.actor }}'
         commit_message: '${{ env.commitmsg }}'   
