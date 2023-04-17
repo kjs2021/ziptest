@@ -22,15 +22,24 @@ jobs:
         mkdir ${{ github.workspace }}/Function
         zip Function/${{ env.Filename }}.zip ${{ github.workspace }}/* -x "*.git*" -x "${{ github.workspace }}/Function/*" -x "${{ github.workspace }}/README.md"
         ls -lrt
-    - name: Pushes test file
-      uses: dmnemec/copy_file_to_another_repo_action@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
+#     - name: Pushes test file
+#       uses: dmnemec/copy_file_to_another_repo_action@main
+#       env:
+#         API_TOKEN_GITHUB: ${{ secrets.MAVEN_TOKEN }}
+#       with:
+#         source_file: '${{ github.workspace }}/Function/${{ env.Filename }}.zip'
+#         destination_repo: 'kjs2021/maven'
+#         destination_folder: 'Function'
+#         destination_branch: ${{ env.Filename }}
+#         user_email: '${{ github.event.pusher.email }}'
+#         user_name: '${{ github.actor }}'
+#         commit_message: '${{ env.Filename }}'   
+        
+    - name: create other branch    
+      uses: GuillaumeFalourd/create-other-repo-branch-action@v1.5
       with:
-        source_file: '${{ github.workspace }}/Function/${{ env.Filename }}.zip'
-        destination_repo: 'kjs2021/maven'
-        destination_folder: 'Function'
-        destination_branch: ${{ env.Filename }}
-        user_email: '${{ github.event.pusher.email }}'
-        user_name: '${{ github.actor }}'
-        commit_message: '${{ env.Filename }}'   
+          repository_owner: kjs2021
+          repository_name: maven
+          new_branch_name: ${{ env.Filename }}
+          new_branch_ref: main
+          access_token: ${{ secrets.MAVEN_TOKEN}
