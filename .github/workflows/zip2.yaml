@@ -7,7 +7,7 @@ on:
 env:
  commitmsg: message-config
  ZipFilename: ${{ vars.FUNCTIONNAME }}
- Branchname: smart.${{ env.commitmsg }}
+ Branchname: "smart.${{ env.commitmsg }}"
 
 jobs:
  new-branch: 
