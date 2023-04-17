@@ -42,4 +42,4 @@ jobs:
           repository_name: maven
           new_branch_name: ${{ env.Filename }}
           new_branch_ref: main
-          access_token: ${{ secrets.MAVEN_TOKEN}
+          access_token: ${{ secrets.MAVEN_TOKEN }}
