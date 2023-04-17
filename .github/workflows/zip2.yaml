@@ -5,7 +5,6 @@ on:
  workflow_dispatch:
 
 env:
- commitmsg: "message-config"
  ZipFilename: ${{ vars.FUNCTIONNAME }}
  Branchname: "smart.${{ vars.COMMITMSG }}"
 
