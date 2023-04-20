@@ -45,7 +45,7 @@ jobs:
         source_file: '${{ github.workspace }}/Function/${{ env.ZipFilename }}.zip'
         destination_repo: 'kjs2021/maven'
         destination_folder: 'Function'
-        destination_branch: test-branch
+        destination_branch: test-branch-2
         user_email: '${{ github.event.pusher.email }}'
         user_name: '${{ github.actor }}'
         commit_message: '${{ vars.COMMITMSG }}'   
